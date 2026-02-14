@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Nidhish P Hari - Fullstack Developer & Biotechnology Professional. Bridging technology and life sciences.">
+    <meta name="keywords"
+        content="Fullstack Developer, Biotechnology, Web Development, React, Spring Boot, Bioinformatics">
+    <meta name="author" content="Nidhish P Hari">
+    <title>Nidhish P Hari | Fullstack Developer & Biotechnology</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nidhishhari.com/">
+    <meta property="og:title" content="Nidhish P Hari | Fullstack Developer & Biotechnology">
+    <meta property="og:description"
+        content="Fullstack Developer & Biotechnology Professional bridging technology and life sciences. Specialized in React, Spring Boot, and Bioinformatics.">
+    <meta property="og:image" content="profile.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nidhishhari.com/">
+    <meta property="twitter:title" content="Nidhish P Hari | Fullstack Developer & Biotechnology">
+    <meta property="twitter:description"
+        content="Fullstack Developer & Biotechnology Professional bridging technology and life sciences.">
+    <meta property="twitter:image" content="profile.jpg">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#000000">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='50' font-size='60' text-anchor='middle' dominant-baseline='middle' fill='%23dc2626' font-family='Arial, sans-serif' font-weight='bold'>NP</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-logo">NP</div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-logo">NP</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <p class="hero-greeting">Hi, I'm</p>
+                <h1 class="hero-title">Nidhish P Hari</h1>
+                <h2 class="hero-subtitle">
+                    <span class="gradient-text">Fullstack Developer</span> &
+                    <span class="gradient-text">Biotechnology Professional</span>
+                </h2>
+                <p class="hero-description">
+                    Bridging the worlds of technology and life sciences. I build innovative web applications
+                    and contribute to cutting-edge biotechnology research, combining computational expertise
+                    with scientific insight.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                    <a href="resume/Nidhish_P_Hari_Resume.pdf" download class="btn btn-outline">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <div class="about-image-wrapper">
+                        <img src="profile.jpg" alt="Nidhish P Hari">
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <h3>Fullstack Developer & Biotechnology Researcher</h3>
+                    <p>
+                        I'm a unique professional with expertise spanning both software development and biotechnology.
+                        Currently pursuing my B.Tech in Biotechnology at KIT - Kalaignarkarunanidhi Institute of
+                        Technology,
+                        I've developed a passion for creating technological solutions to biological challenges.
+                    </p>
+                    <p>
+                        My journey combines hands-on laboratory experience with modern web development skills. From
+                        building cancer risk prediction platforms to developing laboratory sample tracking systems,
+                        I thrive at the intersection of code and science.
+                    </p>
+                    <p>
+                        When I'm not coding or in the lab, I'm exploring new technologies, participating in hackathons,
+                        and contributing to open-source projects that make a difference in healthcare and research.
+                    </p>
+
+                    <div class="about-highlights">
+                        <div class="highlight-item fade-in">
+                            <h4>🎓 Education</h4>
+                            <p>B.Tech in Biotechnology<br>CGPA: 7.5</p>
+                        </div>
+                        <div class="highlight-item fade-in">
+                            <h4>💼 Experience</h4>
+                            <p>Fullstack Developer Intern<br>Research Intern</p>
+                        </div>
+                        <div class="highlight-item fade-in">
+                            <h4>🏆 Achievements</h4>
+                            <p>3 Hackathons<br>Multiple Projects</p>
+                        </div>
+                        <div class="highlight-item fade-in">
+                            <h4>🔬 Research</h4>
+                            <p>Cancer Research<br>Bioinformatics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">💼</div>
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Hackathons</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">📄</div>
+                    <div class="stat-number" data-target="1">0</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">
+                        <span class="skill-category-icon">💻</span>
+                        <h3>Frontend Development</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Tailwind</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">
+                        <span class="skill-category-icon">⚙️</span>
+                        <h3>Backend Development</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">
+                        <span class="skill-category-icon">🗄️</span>
+                        <h3>Database & Tools</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">
+                        <span class="skill-category-icon">🔬</span>
+                        <h3>Biotechnology</h3>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag">PCR Handling</span>
+                        <span class="skill-tag">Mass Spectrometry</span>
+                        <span class="skill-tag">Lab Protocols</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Research Methods</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1: OncoPredict-Hybrid -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">OncoPredict-Hybrid</h3>
+                        <p class="project-date">Jan 2026 - Feb 2026</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            A comprehensive platform for predicting cancer risk using gene and protein biomarker data,
+                            featuring advanced drug target binding probability estimation.
+                        </p>
+                        <ul class="project-features">
+                            <li>Implemented models to estimate drug target binding probability</li>
+                            <li>Designed web-based dashboard for visualization</li>
+                            <li>Enabled generation of downloadable research reports</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/NidhishHari/OncoPredict-Hybrid" class="project-link"
+                                target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Lab-Sample-Tracker -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">Lab-Sample-Tracker</h3>
+                        <p class="project-date">Jan 2026 - Feb 2026</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            A web-based laboratory sample tracking system built with React and Node.js,
+                            streamlining sample management and status updates.
+                        </p>
+                        <ul class="project-features">
+                            <li>Built sample tracking system using React and Firebase</li>
+                            <li>Implemented features for sample logging and tracking</li>
+                            <li>Designed real-time status updates interface</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/NidhishHari/Lab-Sample-Tracker" class="project-link"
+                                target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Cancer Research -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">Cancer Research on Oral and Cervical Cancer</h3>
+                        <p class="project-date">2023 - 2026</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Academic research project focusing on data collection, analysis, and documentation
+                            of oral and cervical cancer studies.
+                        </p>
+                        <ul class="project-features">
+                            <li>Conducted structured research on cancer biomarkers</li>
+                            <li>Applied biotechnology principles and methodologies</li>
+                            <li>Collaborated with mentors on data analysis</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Research</span>
+                            <span class="tech-tag">Data Analysis</span>
+                            <span class="tech-tag">Biotechnology</span>
+                            <span class="tech-tag">Documentation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Experience & Education</h2>
+            <div class="timeline">
+                <!-- Experience 1 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jun 2026</span>
+                        <h3 class="timeline-title">Full Stack Developer Intern</h3>
+                        <p class="timeline-subtitle">Top Academy</p>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Designed and developed scalable REST APIs using Spring Boot</li>
+                                <li>Optimized backend logic to improve API performance and response times</li>
+                                <li>Integrated React frontend with backend services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Feb 2024</span>
+                        <h3 class="timeline-title">Research Intern</h3>
+                        <p class="timeline-subtitle">Idhayam Parishkar Lab Ltd.</p>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Completed training and performed routine laboratory analyses</li>
+                                <li>Assisted in daily lab activities following standard protocols</li>
+                                <li>Gained hands-on experience with laboratory equipment and procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education 1 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - Present</span>
+                        <h3 class="timeline-title">B.Tech in Biotechnology</h3>
+                        <p class="timeline-subtitle">KIT - Kalaignarkarunanidhi Institute of Technology</p>
+                        <div class="timeline-description">
+                            <p>CGPA: 7.5</p>
+                            <p>Focusing on the intersection of biotechnology and computational methods,
+                                with coursework in molecular biology, bioinformatics, and research methodologies.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2020 - 2022</span>
+                        <h3 class="timeline-title">Higher Secondary Education</h3>
+                        <p class="timeline-subtitle">Bharath Matha Higher Secondary School</p>
+                        <div class="timeline-description">
+                            <p>GPA: 9.4</p>
+                            <p>Completed higher secondary education with strong foundation in sciences.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 - 2025</span>
+                        <h3 class="timeline-title">Achievements</h3>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Participant - Amazon Smbhav Hackathon 2024</li>
+                                <li>Selected participant - Innovators Conclave 2025</li>
+                                <li>Contributor - India Code to Give Hackathon 2025</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="section" id="certificates">
+        <div class="container">
+            <h2 class="section-title fade-in">Certifications</h2>
+            <div class="certificates-grid">
+                <!-- Certificate 1 -->
+                <div class="certificate-card fade-in">
+                    <div class="certificate-icon">🏆</div>
+                    <div class="certificate-date">Dec 2023</div>
+                    <h3 class="certificate-title">Bioprocessing Strategies for Biofuels</h3>
+                    <p class="certificate-description">
+                        Participated in the SERB sponsored third national workshop on bioprocessing strategies for
+                        biofuels: Production, Modelling, simulation and optimization conducted at SASTRA, Thanjavur
+                        Tamil Nadu-631401 December 26th -30th
+                    </p>
+                    <div class="certificate-issuer">SERB & SASTRA University</div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="certificate-card fade-in">
+                    <div class="certificate-icon">📜</div>
+                    <div class="certificate-date">Feb 2024</div>
+                    <h3 class="certificate-title">Certificate of Training</h3>
+                    <p class="certificate-description">
+                        Successfully completed internship training for the period of 9 days and carried out a regular
+                        analysis and other laboratory activities in Idhayam Parikshan Labs Ltd.
+                    </p>
+                    <div class="certificate-issuer">Idhayam Parikshan Labs Ltd.</div>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="certificate-card fade-in">
+                    <div class="certificate-icon">📊</div>
+                    <div class="certificate-date">Aug 2023</div>
+                    <h3 class="certificate-title">Statistical Tools for Research</h3>
+                    <p class="certificate-description">
+                        Successfully completed the professional course on STATISTICAL TOOLS FOR RESEARCH as per the IQAC
+                        approved curriculum structure of KIT-Kalaignarkarunanidhi Institute Of Technology (Autonomous)
+                        during the academic year 2023-2024
+                    </p>
+                    <div class="certificate-issuer">KIT - IQAC Approved</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Publications Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="section-title fade-in">Publications & Research</h2>
+            <div class="blog-grid">
+                <!-- Published Paper -->
+                <div class="blog-card fade-in">
+                    <div class="blog-image">
+                        <div class="blog-badge">Published</div>
+                        <div class="blog-placeholder">📄</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">November 2025</span>
+                            <span class="blog-category">Research Paper</span>
+                        </div>
+                        <h3 class="blog-title">Age-Specific Trends and Clinical Management of Cervical Cancer: A
+                            Comprehensive Review</h3>
+                        <p class="blog-description">
+                            A comprehensive review of epidemiology, risk factors, and treatment approaches for cervical
+                            cancer. Published in the International Journal of Innovative Science and Research
+                            Technology.
+                        </p>
+                        <div class="blog-details">
+                            <p><strong>Journal:</strong> International Journal of Innovative Science and Research
+                                Technology</p>
+                            <p><strong>Volume:</strong> 10, Issue 11</p>
+                            <p><strong>ISSN:</strong> 2456-2165</p>
+                        </div>
+                        <div class="blog-links">
+                            <a href="https://doi.org/10.38124/ijisrt/25nov799" target="_blank" class="blog-link">View
+                                Paper</a>
+                            <a href="https://doi.org/10.38124/ijisrt/25nov799" target="_blank"
+                                class="blog-link blog-link-secondary">DOI: 10.38124/ijisrt/25nov799</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info fade-in">
+                    <p class="contact-text">
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
+                        visions.
+                        Whether you have a question or just want to say hi, feel free to reach out!
+                    </p>
+
+                    <div class="contact-links">
+                        <a href="mailto:nidhishhari35@gmail.com" class="contact-link">
+                            <span class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                            </span>
+                            <span>nidhishhari35@gmail.com</span>
+                        </a>
+                        <a href="tel:+918089032447" class="contact-link">
+                            <span class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+                                </svg>
+                            </span>
+                            <span>+91 8089032447</span>
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/nidhish-p-hari" target="_blank" class="social-link"
+                            title="LinkedIn">
+                            <span>in</span>
+                        </a>
+                        <a href="https://github.com/NidhishHari" target="_blank" class="social-link" title="GitHub">
+                            <span>GH</span>
+                        </a>
+                        <a href="https://nidhishhari35.wixsite.com/portfolio" target="_blank" class="social-link"
+                            title="Portfolio">
+                            <span>🌐</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper fade-in">
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/nidhishhari35@gmail.com"
+                        method="POST">
+                        <input type="hidden" name="_subject" value="New Portfolio Contact!">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="What's this about?">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                placeholder="Your message here..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <div class="form-status" id="formStatus"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 <a href="#home">Nidhish P Hari</a>. All rights reserved.</p>
+                <p>Built with passion, code, and science.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
