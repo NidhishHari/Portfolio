@@ -334,7 +334,7 @@ window.addEventListener('load', () => {
 
 
 // ========================================
-// FALLING CONFETTI (GOOGLE ANTIGRAVITY STYLE)
+// THEMED CONFETTI WITH CURSOR GRAVITY
 // ========================================
 
 const canvas = document.getElementById('particleCanvas');
@@ -343,41 +343,77 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Track mouse position
+let mouse = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+};
+
 const confetti = [];
-const confettiCount = 150;
+const confettiCount = 120;
 
 class ConfettiParticle {
     constructor() {
         this.reset();
+        // Spread initial positions for smooth start
+        this.y = Math.random() * canvas.height;
     }
 
     reset() {
         this.x = Math.random() * canvas.width;
         this.y = -10;
-        this.vx = (Math.random() - 0.5) * 0.5; // Slight horizontal drift
-        this.vy = Math.random() * 1 + 0.5; // Falling speed
-        this.size = Math.random() * 3 + 1;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = Math.random() * 0.8 + 0.4; // Base falling speed
+        this.size = Math.random() * 3 + 1.5;
         this.rotation = Math.random() * Math.PI * 2;
         this.rotationSpeed = (Math.random() - 0.5) * 0.05;
 
-        // Color gradient from blue to red (like Antigravity)
+        // Red and black theme colors
         const colorChoice = Math.random();
-        if (colorChoice < 0.33) {
-            // Blue tones
-            this.color = `rgba(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 150 + 100)}, 255, 0.8)`;
-        } else if (colorChoice < 0.66) {
-            // Purple/Pink tones
-            this.color = `rgba(${Math.floor(Math.random() * 100 + 150)}, ${Math.floor(Math.random() * 100)}, 255, 0.8)`;
+        if (colorChoice < 0.6) {
+            // Red tones (primary)
+            const redShade = Math.floor(Math.random() * 100 + 155);
+            this.color = `rgba(${redShade}, ${Math.floor(Math.random() * 50)}, ${Math.floor(Math.random() * 50)}, 0.9)`;
+        } else if (colorChoice < 0.85) {
+            // Dark red/crimson
+            this.color = `rgba(${Math.floor(Math.random() * 50 + 100)}, ${Math.floor(Math.random() * 20)}, ${Math.floor(Math.random() * 20)}, 0.8)`;
         } else {
-            // Red tones (matching your theme)
-            this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, 0.8)`;
+            // Black/dark gray accents
+            const gray = Math.floor(Math.random() * 50 + 20);
+            this.color = `rgba(${gray}, ${gray}, ${gray}, 0.7)`;
         }
     }
 
     update() {
+        // Calculate distance to mouse
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Attraction force (medium range)
+        if (distance < 200 && distance > 50) {
+            const force = (200 - distance) / 200 * 0.4;
+            this.vx += (dx / distance) * force;
+            this.vy += (dy / distance) * force * 0.5; // Less vertical pull
+        }
+
+        // Repulsion force (close range)
+        if (distance < 50) {
+            const force = (50 - distance) / 50 * 1.5;
+            this.vx -= (dx / distance) * force;
+            this.vy -= (dy / distance) * force;
+        }
+
+        // Apply velocity
         this.x += this.vx;
         this.y += this.vy;
         this.rotation += this.rotationSpeed;
+
+        // Gravity (always falling)
+        this.vy += 0.02;
+
+        // Friction
+        this.vx *= 0.98;
 
         // Reset particle when it goes off screen
         if (this.y > canvas.height + 10) {
@@ -398,16 +434,21 @@ class ConfettiParticle {
         ctx.fillStyle = this.color;
         ctx.fillRect(-this.size / 2, -this.size, this.size, this.size * 2);
 
+        // Add slight glow for red particles
+        if (this.color.includes('155') || this.color.includes('100')) {
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = 'rgba(220, 38, 38, 0.5)';
+            ctx.fillRect(-this.size / 2, -this.size, this.size, this.size * 2);
+            ctx.shadowBlur = 0;
+        }
+
         ctx.restore();
     }
 }
 
 function initConfetti() {
     for (let i = 0; i < confettiCount; i++) {
-        const particle = new ConfettiParticle();
-        // Spread initial positions across the screen height for smooth start
-        particle.y = Math.random() * canvas.height;
-        confetti.push(particle);
+        confetti.push(new ConfettiParticle());
     }
 }
 
@@ -419,6 +460,27 @@ function animateConfetti() {
     });
     requestAnimationFrame(animateConfetti);
 }
+
+// Mouse tracking
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+// Touch support for mobile
+window.addEventListener('touchmove', (e) => {
+    if (e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }
+});
+
+window.addEventListener('touchstart', (e) => {
+    if (e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }
+});
 
 initConfetti();
 animateConfetti();
