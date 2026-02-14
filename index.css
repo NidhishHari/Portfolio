@@ -99,6 +99,20 @@ body {
     color: var(--color-text-primary);
     background-color: var(--color-bg-primary);
     overflow-x: hidden;
+    cursor: url('cursor.png'), auto;
+}
+
+a,
+button,
+.nav-link,
+.project-card,
+.skill-tag,
+.social-link,
+.contact-link,
+.blog-link,
+.theme-toggle,
+.scroll-top-btn {
+    cursor: url('cursor.png'), pointer;
 }
 
 /* ========================================
