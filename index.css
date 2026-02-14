@@ -99,11 +99,11 @@ body {
     color: var(--color-text-primary);
     background-color: var(--color-bg-primary);
     overflow-x: hidden;
-    cursor: crosshair;
+    cursor: url('cursor.svg') 2 2, auto;
 }
 
 * {
-    cursor: crosshair;
+    cursor: url('cursor.svg') 2 2, auto;
 }
 
 a,
@@ -118,7 +118,7 @@ input[type="submit"],
 .theme-toggle,
 .scroll-top-btn,
 .btn {
-    cursor: pointer;
+    cursor: url('cursor.svg') 2 2, pointer;
 }
 
 /* ========================================
