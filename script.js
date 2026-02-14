@@ -334,7 +334,7 @@ window.addEventListener('load', () => {
 
 
 // ========================================
-// INTERACTIVE GRAVITY CELLS
+// FALLING CONFETTI (GOOGLE ANTIGRAVITY STYLE)
 // ========================================
 
 const canvas = document.getElementById('particleCanvas');
@@ -343,132 +343,85 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Track mouse position
-let mouse = {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2
-};
+const confetti = [];
+const confettiCount = 150;
 
-const cells = [];
-const cellCount = 70;
-
-class GravityCell {
+class ConfettiParticle {
     constructor() {
+        this.reset();
+    }
+
+    reset() {
         this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = 0;
-        this.vy = 0;
-        this.size = Math.random() * 3 + 2;
-        this.baseSize = this.size;
-        this.opacity = Math.random() * 0.4 + 0.3;
-        this.hue = Math.random() * 15; // Red variations (0-15 for red spectrum)
+        this.y = -10;
+        this.vx = (Math.random() - 0.5) * 0.5; // Slight horizontal drift
+        this.vy = Math.random() * 1 + 0.5; // Falling speed
+        this.size = Math.random() * 3 + 1;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+
+        // Color gradient from blue to red (like Antigravity)
+        const colorChoice = Math.random();
+        if (colorChoice < 0.33) {
+            // Blue tones
+            this.color = `rgba(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 150 + 100)}, 255, 0.8)`;
+        } else if (colorChoice < 0.66) {
+            // Purple/Pink tones
+            this.color = `rgba(${Math.floor(Math.random() * 100 + 150)}, ${Math.floor(Math.random() * 100)}, 255, 0.8)`;
+        } else {
+            // Red tones (matching your theme)
+            this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, 0.8)`;
+        }
     }
 
     update() {
-        // Calculate distance to mouse
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        // Attraction force (medium range)
-        if (distance < 250 && distance > 60) {
-            const force = (250 - distance) / 250 * 0.6;
-            this.vx += (dx / distance) * force;
-            this.vy += (dy / distance) * force;
-        }
-
-        // Repulsion force (close range)
-        if (distance < 60) {
-            const force = (60 - distance) / 60 * 2.5;
-            this.vx -= (dx / distance) * force;
-            this.vy -= (dy / distance) * force;
-        }
-
-        // Apply velocity
         this.x += this.vx;
         this.y += this.vy;
+        this.rotation += this.rotationSpeed;
 
-        // Friction
-        this.vx *= 0.92;
-        this.vy *= 0.92;
-
-        // Boundary bounce
-        if (this.x < 0 || this.x > canvas.width) {
-            this.vx *= -0.5;
-            this.x = Math.max(0, Math.min(canvas.width, this.x));
-        }
-        if (this.y < 0 || this.y > canvas.height) {
-            this.vy *= -0.5;
-            this.y = Math.max(0, Math.min(canvas.height, this.y));
+        // Reset particle when it goes off screen
+        if (this.y > canvas.height + 10) {
+            this.reset();
         }
 
-        // Size based on distance (closer = bigger)
-        const sizeFactor = distance < 180 ? 1 + (180 - distance) / 180 * 1.5 : 1;
-        this.size = this.baseSize * sizeFactor;
+        // Wrap horizontally
+        if (this.x < -10) this.x = canvas.width + 10;
+        if (this.x > canvas.width + 10) this.x = -10;
     }
 
     draw() {
-        // Create radial gradient for glow effect
-        const gradient = ctx.createRadialGradient(
-            this.x, this.y, 0,
-            this.x, this.y, this.size * 2
-        );
-        gradient.addColorStop(0, `hsla(${this.hue}, 85%, 55%, ${this.opacity})`);
-        gradient.addColorStop(0.5, `hsla(${this.hue}, 80%, 45%, ${this.opacity * 0.5})`);
-        gradient.addColorStop(1, `hsla(${this.hue}, 75%, 35%, 0)`);
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
 
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-        ctx.fill();
+        // Draw as small rectangle (confetti-like)
+        ctx.fillStyle = this.color;
+        ctx.fillRect(-this.size / 2, -this.size, this.size, this.size * 2);
 
-        // Inner bright core
-        ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity * 0.8})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.restore();
     }
 }
 
-function initCells() {
-    for (let i = 0; i < cellCount; i++) {
-        cells.push(new GravityCell());
+function initConfetti() {
+    for (let i = 0; i < confettiCount; i++) {
+        const particle = new ConfettiParticle();
+        // Spread initial positions across the screen height for smooth start
+        particle.y = Math.random() * canvas.height;
+        confetti.push(particle);
     }
 }
 
-function animateCells() {
+function animateConfetti() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    cells.forEach(cell => {
-        cell.update();
-        cell.draw();
+    confetti.forEach(particle => {
+        particle.update();
+        particle.draw();
     });
-    requestAnimationFrame(animateCells);
+    requestAnimationFrame(animateConfetti);
 }
 
-// Mouse tracking
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-});
-
-// Touch support for mobile
-window.addEventListener('touchmove', (e) => {
-    if (e.touches[0]) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-    }
-});
-
-// Touch start for mobile
-window.addEventListener('touchstart', (e) => {
-    if (e.touches[0]) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-    }
-});
-
-initCells();
-animateCells();
+initConfetti();
+animateConfetti();
 
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
