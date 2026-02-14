@@ -332,8 +332,9 @@ window.addEventListener('load', () => {
     }, 2000);
 });
 
+
 // ========================================
-// PARTICLE BACKGROUND
+// INTERACTIVE GRAVITY CELLS
 // ========================================
 
 const canvas = document.getElementById('particleCanvas');
@@ -342,54 +343,132 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const particles = [];
-const particleCount = 100;
+// Track mouse position
+let mouse = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+};
 
-class Particle {
+const cells = [];
+const cellCount = 70;
+
+class GravityCell {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.vx = 0;
+        this.vy = 0;
+        this.size = Math.random() * 3 + 2;
+        this.baseSize = this.size;
+        this.opacity = Math.random() * 0.4 + 0.3;
+        this.hue = Math.random() * 15; // Red variations (0-15 for red spectrum)
     }
 
     update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        // Calculate distance to mouse
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+        // Attraction force (medium range)
+        if (distance < 250 && distance > 60) {
+            const force = (250 - distance) / 250 * 0.6;
+            this.vx += (dx / distance) * force;
+            this.vy += (dy / distance) * force;
+        }
+
+        // Repulsion force (close range)
+        if (distance < 60) {
+            const force = (60 - distance) / 60 * 2.5;
+            this.vx -= (dx / distance) * force;
+            this.vy -= (dy / distance) * force;
+        }
+
+        // Apply velocity
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Friction
+        this.vx *= 0.92;
+        this.vy *= 0.92;
+
+        // Boundary bounce
+        if (this.x < 0 || this.x > canvas.width) {
+            this.vx *= -0.5;
+            this.x = Math.max(0, Math.min(canvas.width, this.x));
+        }
+        if (this.y < 0 || this.y > canvas.height) {
+            this.vy *= -0.5;
+            this.y = Math.max(0, Math.min(canvas.height, this.y));
+        }
+
+        // Size based on distance (closer = bigger)
+        const sizeFactor = distance < 180 ? 1 + (180 - distance) / 180 * 1.5 : 1;
+        this.size = this.baseSize * sizeFactor;
     }
 
     draw() {
-        ctx.fillStyle = `rgba(220, 38, 38, ${this.opacity})`;
+        // Create radial gradient for glow effect
+        const gradient = ctx.createRadialGradient(
+            this.x, this.y, 0,
+            this.x, this.y, this.size * 2
+        );
+        gradient.addColorStop(0, `hsla(${this.hue}, 85%, 55%, ${this.opacity})`);
+        gradient.addColorStop(0.5, `hsla(${this.hue}, 80%, 45%, ${this.opacity * 0.5})`);
+        gradient.addColorStop(1, `hsla(${this.hue}, 75%, 35%, 0)`);
+
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner bright core
+        ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity * 0.8})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
         ctx.fill();
     }
 }
 
-function initParticles() {
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+function initCells() {
+    for (let i = 0; i < cellCount; i++) {
+        cells.push(new GravityCell());
     }
 }
 
-function animateParticles() {
+function animateCells() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(particle => {
-        particle.update();
-        particle.draw();
+    cells.forEach(cell => {
+        cell.update();
+        cell.draw();
     });
-    requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animateCells);
 }
 
-initParticles();
-animateParticles();
+// Mouse tracking
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+// Touch support for mobile
+window.addEventListener('touchmove', (e) => {
+    if (e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }
+});
+
+// Touch start for mobile
+window.addEventListener('touchstart', (e) => {
+    if (e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }
+});
+
+initCells();
+animateCells();
 
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
